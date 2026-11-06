@@ -39,6 +39,16 @@ def get_table(url):
     header = get_json(header_url)
     return header, get_json(urljoin(header_url, header['data_url']))
 
+def table_urls(config, override=None):
+    urls = override or config.get('tableUrls')
+    if urls is None:
+        urls = [config.get('tableUrl') or DEFAULT_TABLE]
+    if not isinstance(urls, list) or not urls or any(not isinstance(url, str) or not url for url in urls):
+        raise ValueError('tableUrlsは空でないURLの配列にしてください。')
+    if len(urls) != len(set(urls)):
+        raise ValueError('難易度表URLが重複しています。')
+    return urls
+
 def table_id(url):
     known = {
         DEFAULT_TABLE: 'satellite',
@@ -214,13 +224,7 @@ def main():
         config = json.loads(Path(args.config).read_text(encoding='utf-8-sig')) if args.config else {}
         database = args.db or config.get('database')
         if not database: raise ValueError('--dbまたは設定ファイルのdatabaseを指定してください。')
-        configured_urls = config.get('tableUrls')
-        if configured_urls is None:
-            configured_urls = [config.get('tableUrl') or DEFAULT_TABLE]
-        urls = args.table_url or configured_urls
-        if not isinstance(urls, list) or not urls or any(not isinstance(url, str) or not url for url in urls):
-            raise ValueError('tableUrlsは空でないURLの配列にしてください。')
-        if len(urls) != len(set(urls)): raise ValueError('難易度表URLが重複しています。')
+        urls = table_urls(config, args.table_url)
         if bool(args.header_file) != bool(args.data_file): raise ValueError('header-fileとdata-fileは両方指定してください。')
         if args.header_file:
             if len(urls) != 1: raise ValueError('オフラインのheader-file/data-fileは1表だけに対応します。')

@@ -1,6 +1,7 @@
 {
   "database": "D:/LR2/LR2files/Database/Score/your-player.db",
   "backupDirectory": "D:/BMSbackup",
+  "bmz": null,
   "tableUrls": [
     "https://stellabms.xyz/sl/table.html",
     "https://stellabms.xyz/st/table.html",
