@@ -1,8 +1,8 @@
-# BMS Score Viewer（LR2 / BMZ）
+# BMS Play Journal（LR2 / BMZ）
 
 LR2と[BMZ-player](https://github.com/hyrorre/bmz-player)のスコアDBから、難易度表のランプ・最小BP・スコアレートとプレイ記録を表示するWebページです。片方だけでも使えます。GitHub Pagesで公開すれば、自宅のPCが停止していてもスマートフォンから最後に更新した記録を閲覧できます。
 
-このリポジトリは配布用です。実際のスコア・プレイ履歴・ローカル設定は含みません。[公開ページ](https://1834356.github.io/bms-score-viewer/)では設定案内を表示し、「デモ」を押すと架空のデータを試せます。
+このリポジトリは配布用です。実際のスコア・プレイ履歴・ローカル設定は含みません。[公開ページ](https://1834356.github.io/bms-play-journal/)では設定案内を表示し、「デモ」を押すと架空のデータを試せます。
 
 ## 利用上の注意
 
@@ -36,13 +36,13 @@ Pythonは[公式サイト](https://www.python.org/downloads/windows/)、Gitは[�
 
 ## 2. 自分のリポジトリを作る
 
-[このリポジトリ](https://github.com/1834356/bms-score-viewer)の「Fork」から自分のアカウントへフォークします。「Use this template」から作成することもできます。以下ではリポジトリ名を `bms-score-viewer` とします。無料のGitHub Pagesを使用する場合は公開リポジトリで作成してください。
+[このリポジトリ](https://github.com/1834356/bms-play-journal)の「Fork」から自分のアカウントへフォークします。「Use this template」から作成することもできます。以下ではリポジトリ名を `bms-play-journal` とします。無料のGitHub Pagesを使用する場合は公開リポジトリで作成してください。
 
 PowerShellで、`YOUR_NAME` を自分のGitHubユーザー名に置き換えて実行します。
 
 ```powershell
-git clone https://github.com/YOUR_NAME/bms-score-viewer.git
-cd bms-score-viewer
+git clone https://github.com/YOUR_NAME/bms-play-journal.git
+cd bms-play-journal
 Copy-Item config.example.json config.local.json
 ```
 
@@ -152,7 +152,7 @@ PowerShellから実行する場合は次のコマンドです。
 - Branch: **main**
 - Folder: **/(root)**
 
-公開処理が完了すると、Pagesの設定画面に閲覧URLが表示されます。リポジトリ名が `bms-score-viewer` なら、通常は `https://YOUR_NAME.github.io/bms-score-viewer/` です。スマートフォンからこのURLを開いてください。上部の「LR2 / BMZ」で切り替えられます。`?player=bmz` を付けるとBMZを直接開けます。BMZだけ設定した場合は、通常のURLでもBMZが表示されます。
+公開処理が完了すると、Pagesの設定画面に閲覧URLが表示されます。リポジトリ名が `bms-play-journal` なら、通常は `https://YOUR_NAME.github.io/bms-play-journal/` です。スマートフォンからこのURLを開いてください。上部の「LR2 / BMZ」で切り替えられます。`?player=bmz` を付けるとBMZを直接開けます。BMZだけ設定した場合は、通常のURLでもBMZが表示されます。
 
 参考: [GitHub Pagesの公開元を設定する](https://docs.github.com/ja/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
 
