@@ -107,6 +107,21 @@ JSONのパスは例のように `/` で区切ると、そのまま記入でき�
 - `ruleMode`: `Beatoraja`、`Lr2Oraja`、`Dx`。BMZで普段使う判定ルールに合わせてください。省略時は `Beatoraja` です。
 - `lnSetting`: `AutoLn`、`AutoCn`、`AutoHcn`、`ForceLn`、`ForceCn`、`ForceHcn`。省略時は `AutoLn` です。
 
+### ブラウザーでBMZの表示設定を切り替える
+
+最初に表示する組み合わせは、BMZの `ruleMode` と `lnSetting` で指定します。切り替え先が必要なときは、同じ `bmz` 内に `additionalModes` を追加します。次の例は LR2oraja / FORCE CN と LR2oraja / FORCE HCN を追加します。
+
+~~~json
+"additionalModes": [
+  {"ruleMode": "Lr2Oraja", "lnSetting": "ForceCn"},
+  {"ruleMode": "Lr2Oraja", "lnSetting": "ForceHcn"}
+]
+~~~
+
+前の項目の末尾にカンマを入れて追加してください。初期設定と同じ組み合わせや、重複する組み合わせは指定できません。
+
+更新後、BMZページ上部の「BMZの表示設定」で切り替えると、難易度表・日別記録・月別集計がまとめて切り替わります。日別の共有リンクには選んだ設定も入ります。1組だけを設定している場合は、これまでどおりその組み合わせを表示します。
+
 ### LR2とBMZを併用する場合
 
 LR2の `database` と必要に応じて `backupDirectory` を残し、BMZの例にある `bmz` を同じJSONの最上位に追加します。`tableUrls` は1つだけ設定し、両方で共用します。
@@ -188,7 +203,7 @@ BMZだけバックアップするには `.\update.ps1 -BackupOnly -BmzOnly` を�
 
 ## データの公開範囲と計算方法
 
-公開ページと閲覧用JSON（LR2は `data/viewer.json`、BMZは `data/bmz.json`）には、URLを知っている人がアクセスできます。JSONには曲名・ランプ・BP・EXスコア・総ノーツ数・日別記録などを含みます。更新スクリプトがコミットするのはこのJSONだけです。元DB、設定、認証情報、リプレイ、ゴースト、ローカルパスは含めません。
+公開ページと閲覧用JSON（LR2は `data/viewer.json`、BMZは `data/bmz.json`、表示設定一覧の `data/bmz-index.json`、追加設定ごとの `data/bmz-modes/*.json`）には、URLを知っている人がアクセスできます。JSONには曲名・ランプ・BP・EXスコア・総ノーツ数・日別記録などを含みます。更新スクリプトがコミットするのはこのJSONだけです。元DB、設定、認証情報、リプレイ、ゴースト、ローカルパスは含めません。
 
 譜面一覧・日別更新一覧・全プレイ履歴・1画面表示の曲名は、MD5で対応するBMS-IRの譜面ページへのリンクです。長い曲名は省略表示を維持し、全文の展開はしません。デモや譜面のMD5がない記録ではリンクを表示しません。
 
